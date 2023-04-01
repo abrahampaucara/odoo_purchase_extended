@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<odoo>
+  <data>
+
+    <record id="view_extended_purchase_order" model="ir.ui.view">
+        <field name="name">purchase.order.extended</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='currency_id']" position="after">
+                <field name="business_name"/>
+                <field name="nit_number"/>
+                <field name="card_add_on"/>
+            </xpath>
+            <xpath expr="//div[@name='reminder' and hasclass('o_row')]" position="after">
+                <field name="authorization_code"/>
+                <field name="control_code"/>
+                <field name="airplane_ticket"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- explicit list view definition -->
+<!--
+    <record model="ir.ui.view" id="purchase_extended.list">
+      <field name="name">purchase_extended list</field>
+      <field name="model">purchase_extended.purchase_extended</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="value"/>
+          <field name="value2"/>
+        </tree>
+      </field>
+    </record>
+-->
+
+    <!-- actions opening views on models -->
+<!--
+    <record model="ir.actions.act_window" id="purchase_extended.action_window">
+      <field name="name">purchase_extended window</field>
+      <field name="res_model">purchase_extended.purchase_extended</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+-->
+
+    <!-- server action to the one above -->
+<!--
+    <record model="ir.actions.server" id="purchase_extended.action_server">
+      <field name="name">purchase_extended server</field>
+      <field name="model_id" ref="model_purchase_extended_purchase_extended"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": model._name,
+        }
+      </field>
+    </record>
+-->
+
+    <!-- Top menu item -->
+<!--
+    <menuitem name="purchase_extended" id="purchase_extended.menu_root"/>
+-->
+    <!-- menu categories -->
+<!--
+    <menuitem name="Menu 1" id="purchase_extended.menu_1" parent="purchase_extended.menu_root"/>
+    <menuitem name="Menu 2" id="purchase_extended.menu_2" parent="purchase_extended.menu_root"/>
+-->
+    <!-- actions -->
+<!--
+    <menuitem name="List" id="purchase_extended.menu_1_list" parent="purchase_extended.menu_1"
+              action="purchase_extended.action_window"/>
+    <menuitem name="Server to list" id="purchase_extended" parent="purchase_extended.menu_2"
+              action="purchase_extended.action_server"/>
+-->
+  </data>
+</odoo>
